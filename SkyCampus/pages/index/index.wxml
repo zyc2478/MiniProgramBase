@@ -1,0 +1,37 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">校园新鲜事</view>
+      <view class="weui-panel__bd">
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text">2026年校园马拉松报名开始啦！</view>
+          <view class="weui-media-box__desc">
+            今年的马拉松将环绕整个西校区，全长5公里。前100名报名者将获得定制T恤一件。欢迎同学们积极参与！
+          </view>
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta">校学生会</view>
+            <view class="weui-media-box__info__meta">2026-03-22</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">阅读 1245</view>
+          </view>
+        </view>
+        <view class="weui-media-box weui-media-box_text">
+          <view class="weui-media-box__title weui-media-box__title_in-text">图书馆新增24小时自习室</view>
+          <view class="weui-media-box__desc">
+            为满足同学们的学习需求，图书馆一楼西侧自习室将从下周一起实行24小时开放制。请大家文明使用。
+          </view>
+          <view class="weui-media-box__info">
+            <view class="weui-media-box__info__meta">图书馆管理处</view>
+            <view class="weui-media-box__info__meta">2026-03-21</view>
+            <view class="weui-media-box__info__meta weui-media-box__info__meta_extra">阅读 892</view>
+          </view>
+        </view>
+      </view>
+      <view class="weui-panel__ft">
+        <view class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">查看更多动态</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

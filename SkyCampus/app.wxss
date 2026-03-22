@@ -1,0 +1,6 @@
+@import 'weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
+page {
+  background-color: #f7f7f7;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Segoe UI, Arial, Roboto, 'PingFang SC', 'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+}

@@ -1,0 +1,27 @@
+.userinfo-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0;
+  background-color: #1a1a1a;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.userinfo-avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+  border: 4rpx solid #fff;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  font-weight: 500;
+}
+
+.weui-cells {
+  font-size: 16px;
+}

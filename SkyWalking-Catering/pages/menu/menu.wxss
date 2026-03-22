@@ -1,0 +1,30 @@
+.food-icon {
+  margin-right: 16px;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.weui-cells__title {
+  padding-top: 15px;
+  padding-bottom: 5px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.weui-cell__bd {
+  font-size: 16px;
+}
+
+.weui-cell__ft {
+  color: #ff4d4f;
+  font-weight: bold;
+}
+
+.weui-btn-area {
+  margin-top: 40px;
+  padding-bottom: 40px;
+}

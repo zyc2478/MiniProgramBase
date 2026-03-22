@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-grids">
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">📅</view>
+        <view class="weui-grid__label">课程表</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">💳</view>
+        <view class="weui-grid__label">一卡通</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">🏢</view>
+        <view class="weui-grid__label">空教室查询</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">📚</view>
+        <view class="weui-grid__label">图书馆预约</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">🚌</view>
+        <view class="weui-grid__label">校车时刻</view>
+      </navigator>
+      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+        <view class="weui-grid__icon">🏥</view>
+        <view class="weui-grid__label">校医院预约</view>
+      </navigator>
+    </view>
+  </view>
+</view>

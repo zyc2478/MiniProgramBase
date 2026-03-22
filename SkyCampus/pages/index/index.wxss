@@ -1,0 +1,16 @@
+.weui-media-box__title_in-text {
+  font-weight: 500;
+  color: #333;
+}
+
+.weui-media-box__desc {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.weui-media-box__info {
+  margin-top: 10px;
+  color: #999;
+  font-size: 12px;
+}

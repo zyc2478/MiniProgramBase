@@ -1,0 +1,44 @@
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title">SkyWalking 西餐店</view>
+    <view class="page__desc">尊享西式美味，品味品质生活</view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-panel weui-panel_access">
+      <view class="weui-panel__hd">今日推荐</view>
+      <view class="weui-panel__bd">
+        <navigator url="../menu/menu" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <view class="placeholder-img">🥩</view>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">澳洲 M5 和牛牛排</view>
+            <view class="weui-media-box__desc">精选澳洲进口和牛，口感醇厚，鲜嫩多汁。</view>
+          </view>
+        </navigator>
+        <navigator url="../menu/menu" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <view class="placeholder-img">🍝</view>
+          </view>
+          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <view class="weui-media-box__title">经典博洛尼亚肉酱面</view>
+            <view class="weui-media-box__desc">传统意式配方，长时间慢炖肉酱，搭配精选意面。</view>
+          </view>
+        </navigator>
+      </view>
+      <view class="weui-panel__ft">
+        <navigator url="../menu/menu" class="weui-cell weui-cell_access weui-cell_link">
+          <view class="weui-cell__bd">查看更多菜单</view>
+          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+      </view>
+    </view>
+
+    <view class="weui-footer">
+      <view class="weui-footer__links">
+        <navigator url="" class="weui-footer__link">关于我们</navigator>
+      </view>
+      <view class="weui-footer__text">Copyright © 2026 SkyWalking</view>
+    </view>
+  </view>
+</view>

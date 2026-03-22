@@ -1,0 +1,15 @@
+.weui-grid__icon {
+  width: 28px;
+  height: 28px;
+  margin: 0 auto;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weui-grid__label {
+  margin-top: 5px;
+  color: #333;
+  font-size: 14px;
+}

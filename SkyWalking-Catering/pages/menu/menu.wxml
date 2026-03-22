@@ -1,0 +1,50 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title">精选主菜</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="food-icon">🥩</view>
+        </view>
+        <view class="weui-cell__bd">澳洲 M5 和牛牛排</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">￥298</view>
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="food-icon">🍝</view>
+        </view>
+        <view class="weui-cell__bd">博洛尼亚肉酱面</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">￥88</view>
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="food-icon">🍕</view>
+        </view>
+        <view class="weui-cell__bd">松露蘑菇比萨</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">￥128</view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">特色甜点</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="food-icon">🍰</view>
+        </view>
+        <view class="weui-cell__bd">提拉米苏</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">￥58</view>
+      </view>
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__hd">
+          <view class="food-icon">🍮</view>
+        </view>
+        <view class="weui-cell__bd">焦糖布丁</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access">￥48</view>
+      </view>
+    </view>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" style="background-color: #1a1a1a;">去结算</button>
+    </view>
+  </view>
+</view>
