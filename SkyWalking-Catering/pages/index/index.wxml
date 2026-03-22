@@ -1,60 +1,66 @@
-<view class="page">
-  <!-- 轮播图 -->
-  <swiper class="banner" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#ff4d4f">
-    <swiper-item>
-      <image src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=800" mode="aspectFill" class="banner-image"></image>
-    </swiper-item>
-    <swiper-item>
-      <image src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800" mode="aspectFill" class="banner-image"></image>
-    </swiper-item>
-  </swiper>
+<view class="container">
+  <!-- 顶部搜索栏 -->
+  <view class="header-search">
+    <view class="search-bar">
+      <icon type="search" size="14"></icon>
+      <text class="search-placeholder">搜索美味餐食...</text>
+    </view>
+  </view>
 
-  <!-- 店铺信息 -->
-  <view class="shop-card">
-    <view class="shop-info">
-      <view class="shop-name">SkyWalking 西餐店</view>
-      <view class="shop-status">
-        <text class="status-tag">营业中</text>
-        <text class="shop-distance">距离您 1.2km</text>
+  <scroll-view scroll-y class="main-content">
+    <!-- 轮播图 -->
+    <swiper class="banner-swiper" indicator-dots autoplay circular interval="3000">
+      <swiper-item>
+        <image src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=800" mode="aspectFill"></image>
+      </swiper-item>
+      <swiper-item>
+        <image src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+
+    <!-- 快捷功能区 -->
+    <view class="quick-actions">
+      <view class="action-item" bindtap="goToMenu">
+        <view class="action-icon order-icon">🛵</view>
+        <view class="action-text">外卖下单</view>
+        <view class="action-desc">准时必达</view>
+      </view>
+      <view class="action-item" bindtap="goToMenu">
+        <view class="action-icon pickup-icon">🥡</view>
+        <view class="action-text">到店自取</view>
+        <view class="action-desc">无需排队</view>
       </view>
     </view>
-    <view class="order-actions">
-      <navigator url="../menu/menu" open-type="switchTab" class="action-btn main-btn">
-        <text class="btn-icon">🛵</text>
-        <text>外卖下单</text>
-      </navigator>
-      <navigator url="../menu/menu" open-type="switchTab" class="action-btn sub-btn">
-        <text class="btn-icon">🥡</text>
-        <text>到店自取</text>
-      </navigator>
-    </view>
-  </view>
 
-  <!-- 分类入口 -->
-  <view class="category-grid">
-    <view class="category-item" wx:for="{{categories}}" wx:key="id" bindtap="goToMenu" data-id="{{item.id}}">
-      <view class="category-icon">{{item.icon}}</view>
-      <view class="category-name">{{item.name}}</view>
+    <!-- 优惠券/会员区 -->
+    <view class="member-card">
+      <view class="member-info">
+        <view class="member-title">欢迎回来，美食达人</view>
+        <view class="member-points">积分：1250 | 优惠券：3张</view>
+      </view>
+      <view class="member-btn">去领券</view>
     </view>
-  </view>
 
-  <!-- 优惠活动 -->
-  <view class="section-title">限时优惠</view>
-  <view class="promo-list">
-    <view class="promo-item" wx:for="{{promoFoods}}" wx:key="id">
-      <image src="{{item.image}}" mode="aspectFill" class="promo-img"></image>
-      <view class="promo-info">
-        <view class="promo-name">{{item.name}}</view>
-        <view class="promo-price">
-          <text class="now-price">￥{{item.price}}</text>
-          <text class="old-price">￥{{item.originalPrice}}</text>
+    <!-- 精选货架 (Featured Items) -->
+    <view class="section-header">
+      <text class="section-title">今日精选</text>
+      <text class="section-more" bindtap="goToMenu">查看全部 ></text>
+    </view>
+    
+    <view class="featured-shelf">
+      <view class="shelf-item" wx:for="{{featuredFoods}}" wx:key="id" bindtap="goToMenu">
+        <image src="{{item.image}}" mode="aspectFill" class="shelf-img"></image>
+        <view class="shelf-info">
+          <view class="shelf-name">{{item.name}}</view>
+          <view class="shelf-bottom">
+            <view class="shelf-price">￥{{item.price}}</view>
+            <view class="shelf-add">+</view>
+          </view>
         </view>
       </view>
-      <view class="add-btn" bindtap="addToCart" data-item="{{item}}">+</view>
     </view>
-  </view>
 
-  <view class="weui-footer">
-    <view class="weui-footer__text">Copyright © 2026 SkyWalking</view>
-  </view>
+    <!-- 底部垫片 -->
+    <view class="footer-spacer"></view>
+  </scroll-view>
 </view>

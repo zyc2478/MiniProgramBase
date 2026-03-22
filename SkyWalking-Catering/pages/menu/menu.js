@@ -7,7 +7,10 @@ Page({
     activeCategoryName: '',
     currentFoods: [],
     totalCount: 0,
-    totalPrice: 0
+    totalPrice: 0,
+    totalDiscount: 0,
+    showCartDetail: false,
+    cartItems: []
   },
 
   onLoad() {
@@ -17,47 +20,49 @@ Page({
   },
 
   onShow() {
-    // 检查是否有从首页跳转过来的分类ID
-    const selectedId = wx.getStorageSync('selectedCategoryId') || this.data.categories[0].id;
-    this.selectCategory({ currentTarget: { dataset: { id: selectedId } } });
-    wx.removeStorageSync('selectedCategoryId');
+    // 默认选择第一个分类
+    if (!this.data.activeCategoryId) {
+      this.selectCategory({ currentTarget: { dataset: { id: this.data.categories[0].id } } });
+    }
     this.updateCartStatus();
   },
 
   selectCategory(e) {
     const id = e.currentTarget.dataset.id;
     const category = this.data.categories.find(c => c.id === id);
+    this.setData({
+      activeCategoryId: id,
+      activeCategoryName: category.name
+    });
+    this.refreshCurrentFoods();
+  },
+
+  refreshCurrentFoods() {
     const allFoods = app.globalData.foods;
     const cart = app.globalData.cart;
-
-    // 过滤出当前分类的商品，并同步购物车数量
     const currentFoods = allFoods
-      .filter(f => f.categoryId === id)
+      .filter(f => f.categoryId === this.data.activeCategoryId)
       .map(f => {
         const cartItem = cart.find(ci => ci.id === f.id);
         return { ...f, count: cartItem ? cartItem.count : 0 };
       });
 
-    this.setData({
-      activeCategoryId: id,
-      activeCategoryName: category.name,
-      currentFoods: currentFoods
-    });
+    this.setData({ currentFoods });
   },
 
   changeCount(e) {
     const { id, delta } = e.currentTarget.dataset;
     const d = parseInt(delta);
     let cart = app.globalData.cart;
-    const foodIndex = this.data.currentFoods.findIndex(f => f.id === id);
-    const food = this.data.currentFoods[foodIndex];
-
+    const allFoods = app.globalData.foods;
+    
     const cartIndex = cart.findIndex(i => i.id === id);
     
     if (d > 0) {
       if (cartIndex > -1) {
         cart[cartIndex].count++;
       } else {
+        const food = allFoods.find(f => f.id === id);
         cart.push({ ...food, count: 1 });
       }
     } else {
@@ -70,13 +75,7 @@ Page({
     }
 
     app.globalData.cart = cart;
-    
-    // 更新当前页面的商品显示数量
-    const newCount = (food.count || 0) + d;
-    this.setData({
-      [`currentFoods[${foodIndex}].count`]: newCount > 0 ? newCount : 0
-    });
-
+    this.refreshCurrentFoods();
     this.updateCartStatus();
   },
 
@@ -84,27 +83,67 @@ Page({
     const cart = app.globalData.cart;
     let totalCount = 0;
     let totalPrice = 0;
+    let totalDiscount = 0;
 
     cart.forEach(item => {
       totalCount += item.count;
       totalPrice += item.count * item.price;
+      if (item.originalPrice) {
+        totalDiscount += item.count * (item.originalPrice - item.price);
+      }
     });
 
     this.setData({
       totalCount,
-      totalPrice
+      totalPrice,
+      totalDiscount,
+      cartItems: cart
+    });
+
+    // 如果购物车空了，关闭详情弹窗
+    if (totalCount === 0) {
+      this.setData({ showCartDetail: false });
+    }
+  },
+
+  toggleCartDetail() {
+    if (this.data.totalCount > 0) {
+      this.setData({ showCartDetail: !this.data.showCartDetail });
+    }
+  },
+
+  clearCart() {
+    wx.showModal({
+      title: '提示',
+      content: '确定清空购物车吗？',
+      success: (res) => {
+        if (res.confirm) {
+          app.globalData.cart = [];
+          this.refreshCurrentFoods();
+          this.updateCartStatus();
+        }
+      }
     });
   },
 
-  goToSettle() {
+  onCheckout() {
+    if (this.data.totalCount === 0) return;
+    
     wx.showLoading({ title: '准备结算...' });
     setTimeout(() => {
       wx.hideLoading();
       wx.showModal({
-        title: '提示',
-        content: '支付功能正在开发中，总金额：￥' + this.data.totalPrice,
-        showCancel: false
+        title: '支付确认',
+        content: `总计：￥${this.data.totalPrice}\n请确认下单？`,
+        success: (res) => {
+          if (res.confirm) {
+            wx.showToast({ title: '下单成功！', icon: 'success' });
+            app.globalData.cart = [];
+            this.refreshCurrentFoods();
+            this.updateCartStatus();
+          }
+        }
       });
-    }, 1000);
+    }, 800);
   }
 })

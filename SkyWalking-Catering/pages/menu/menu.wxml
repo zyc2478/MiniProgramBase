@@ -1,6 +1,6 @@
 <view class="menu-container">
-  <!-- 左侧分类栏 -->
-  <scroll-view class="category-sidebar" scroll-y="true">
+  <!-- 左侧分类导航 -->
+  <scroll-view class="category-sidebar" scroll-y>
     <view 
       wx:for="{{categories}}" 
       wx:key="id" 
@@ -8,40 +8,72 @@
       bindtap="selectCategory" 
       data-id="{{item.id}}"
     >
-      <text>{{item.name}}</text>
+      <text class="cat-icon">{{item.icon}}</text>
+      <text class="cat-name">{{item.name}}</text>
     </view>
   </scroll-view>
 
-  <!-- 右侧商品列表 -->
-  <scroll-view class="food-list" scroll-y="true" scroll-with-animation="true">
-    <view class="category-title">{{activeCategoryName}}</view>
-    <view class="food-item" wx:for="{{currentFoods}}" wx:key="id">
-      <image src="{{item.image}}" mode="aspectFill" class="food-img"></image>
-      <view class="food-info">
-        <view class="food-name">{{item.name}}</view>
-        <view class="food-desc">{{item.desc}}</view>
-        <view class="food-bottom">
-          <view class="food-price">￥{{item.price}}</view>
-          <view class="count-actions">
-            <view class="minus-btn" wx:if="{{item.count > 0}}" bindtap="changeCount" data-id="{{item.id}}" data-delta="-1">-</view>
-            <view class="count-num" wx:if="{{item.count > 0}}">{{item.count}}</view>
-            <view class="plus-btn" bindtap="changeCount" data-id="{{item.id}}" data-delta="1">+</view>
+  <!-- 右侧货架列表 -->
+  <scroll-view class="product-shelf" scroll-y scroll-with-animation>
+    <view class="shelf-title">{{activeCategoryName}}</view>
+    <view class="product-card" wx:for="{{currentFoods}}" wx:key="id">
+      <image src="{{item.image}}" mode="aspectFill" class="product-img"></image>
+      <view class="product-info">
+        <view class="product-name">{{item.name}}</view>
+        <view class="product-desc">{{item.desc}}</view>
+        <view class="product-bottom">
+          <view class="product-price">
+            <text class="unit">￥</text>
+            <text class="value">{{item.price}}</text>
+            <text class="original" wx:if="{{item.originalPrice}}">￥{{item.originalPrice}}</text>
+          </view>
+          <view class="counter">
+            <view class="btn minus" wx:if="{{item.count > 0}}" bindtap="changeCount" data-id="{{item.id}}" data-delta="-1">-</view>
+            <text class="num" wx:if="{{item.count > 0}}">{{item.count}}</text>
+            <view class="btn plus" bindtap="changeCount" data-id="{{item.id}}" data-delta="1">+</view>
           </view>
         </view>
       </view>
     </view>
+    <!-- 底部撑开，防止被购物车挡住 -->
+    <view class="shelf-spacer"></view>
   </scroll-view>
 
-  <!-- 底部购物车栏 -->
-  <view class="cart-bar" wx:if="{{totalCount > 0}}">
-    <view class="cart-icon-wrapper" bindtap="toggleCart">
+  <!-- 底部购物车条 -->
+  <view class="cart-bar {{totalCount > 0 ? 'active' : ''}}">
+    <view class="cart-icon-box" bindtap="toggleCartDetail">
       <view class="cart-icon">🛒</view>
-      <view class="cart-badge">{{totalCount}}</view>
+      <view class="badge" wx:if="{{totalCount > 0}}">{{totalCount}}</view>
     </view>
-    <view class="cart-total">
+    <view class="cart-info" wx:if="{{totalCount > 0}}">
       <view class="total-price">￥{{totalPrice}}</view>
-      <view class="delivery-tip">另需配送费￥5</view>
+      <view class="discount-tip">已优惠 ￥{{totalDiscount}}</view>
     </view>
-    <view class="settle-btn" bindtap="goToSettle">去结算</view>
+    <view class="cart-info" wx:else>
+      <text class="empty-tip">未选择商品</text>
+    </view>
+    <view class="checkout-btn {{totalCount > 0 ? 'enabled' : ''}}" bindtap="onCheckout">
+      {{totalCount > 0 ? '去结算' : '￥20起送'}}
+    </view>
+  </view>
+
+  <!-- 购物车详情弹窗 (简易版) -->
+  <view class="cart-detail-mask" wx:if="{{showCartDetail}}" bindtap="toggleCartDetail"></view>
+  <view class="cart-detail-popup" wx:if="{{showCartDetail}}">
+    <view class="popup-header">
+      <text>已选商品</text>
+      <text class="clear-cart" bindtap="clearCart">清空购物车</text>
+    </view>
+    <scroll-view class="popup-list" scroll-y>
+      <view class="popup-item" wx:for="{{cartItems}}" wx:key="id">
+        <view class="item-name">{{item.name}}</view>
+        <view class="item-price">￥{{item.price * item.count}}</view>
+        <view class="counter">
+          <view class="btn minus" bindtap="changeCount" data-id="{{item.id}}" data-delta="-1">-</view>
+          <text class="num">{{item.count}}</text>
+          <view class="btn plus" bindtap="changeCount" data-id="{{item.id}}" data-delta="1">+</view>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 </view>
