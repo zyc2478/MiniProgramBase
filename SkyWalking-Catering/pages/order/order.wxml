@@ -1,12 +1,44 @@
 <view class="page">
-  <view class="page__bd">
-    <view class="weui-loadmore weui-loadmore_line">
-      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无进行中的订单</view>
+  <view class="order-status-container" wx:if="{{order}}">
+    <!-- 顶部状态卡片 -->
+    <view class="status-card">
+      <view class="status-title">请您稍等，餐食制作中</view>
+      <view class="order-no-box">
+        <text class="label">取餐号</text>
+        <text class="number">{{order.orderNo}}</text>
+      </view>
+      <view class="progress-bar">
+        <view class="progress-inner active"></view>
+      </view>
+      <view class="status-tips">前面还有 2 订单正在制作</view>
     </view>
+
+    <!-- 订单详情列表 -->
+    <view class="weui-cells__title">订单详情</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" wx:for="{{order.items}}" wx:key="id">
+        <view class="weui-cell__bd">{{item.name}}</view>
+        <view class="weui-cell__ft">x{{item.count}}</view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">合计</view>
+        <view class="weui-cell__ft" style="color: #ff4d4f; font-weight: bold;">￥{{order.totalPrice}}</view>
+      </view>
+    </view>
+
+    <!-- 按钮操作 -->
     <view class="weui-btn-area">
-      <navigator url="../menu/menu" open-type="switchTab">
-        <button class="weui-btn" type="default">去点餐</button>
-      </navigator>
+      <button class="weui-btn" type="primary" style="background-color: #ff4d4f;" bindtap="onRefresh">刷新状态</button>
+      <button class="weui-btn" type="default" bindtap="onContact">联系商家</button>
     </view>
+  </view>
+
+  <!-- 无订单时的占位 -->
+  <view class="empty-order" wx:else>
+    <view class="empty-icon">🍱</view>
+    <view class="empty-text">暂无进行中的订单</view>
+    <navigator url="../menu/menu" open-type="switchTab">
+      <button class="weui-btn mini-btn" type="primary" size="mini" style="background-color: #ff4d4f;">去点餐</button>
+    </navigator>
   </view>
 </view>

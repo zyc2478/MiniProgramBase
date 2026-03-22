@@ -116,6 +116,18 @@ Page({
       cartItems: cart
     });
 
+    // 设置 TabBar 角标
+    if (totalCount > 0) {
+      wx.setTabBarBadge({
+        index: 1,
+        text: totalCount.toString()
+      });
+    } else {
+      wx.removeTabBarBadge({
+        index: 1
+      });
+    }
+
     if (totalCount === 0) {
       this.setData({ showCartDetail: false });
     }
@@ -144,21 +156,57 @@ Page({
   onCheckout() {
     if (this.data.totalCount === 0) return;
     
-    wx.showLoading({ title: '准备结算...' });
+    // 1. 模拟微信支付动画
+    wx.showLoading({
+      title: '正在调起微信支付',
+      mask: true
+    });
+
     setTimeout(() => {
       wx.hideLoading();
+      
+      // 2. 模拟支付确认弹窗
       wx.showModal({
-        title: '天行会员结算',
-        content: `您已享受会员优惠！\n实付金额：￥${this.data.totalPrice}\n请确认支付？`,
+        title: '微信支付',
+        content: `支付金额：￥${this.data.totalPrice}`,
+        confirmText: '确认支付',
+        cancelText: '取消',
         success: (res) => {
           if (res.confirm) {
-            wx.showToast({ title: '支付成功！', icon: 'success' });
-            app.globalData.cart = [];
-            this.refreshCurrentFoods();
-            this.updateCartStatus();
+            wx.showLoading({ title: '支付中...' });
+            
+            setTimeout(() => {
+              wx.hideLoading();
+              wx.showToast({
+                title: '支付成功',
+                icon: 'success',
+                duration: 1500
+              });
+
+              // 生成一个模拟订单号
+              const orderNo = 'SW' + Math.random().toString().slice(2, 10);
+              app.globalData.lastOrder = {
+                orderNo: orderNo,
+                items: [...app.globalData.cart],
+                totalPrice: this.data.totalPrice,
+                status: '制作中'
+              };
+
+              // 清空购物车
+              app.globalData.cart = [];
+              this.refreshCurrentFoods();
+              this.updateCartStatus();
+
+              // 3. 跳转到订单页（叫号页）
+              setTimeout(() => {
+                wx.switchTab({
+                  url: '/pages/order/order'
+                });
+              }, 1500);
+            }, 1000);
           }
         }
       });
-    }, 800);
+    }, 1000);
   }
 })
