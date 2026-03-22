@@ -1,44 +1,60 @@
 <view class="page">
-  <view class="page__hd">
-    <view class="page__title">SkyWalking 西餐店</view>
-    <view class="page__desc">尊享西式美味，品味品质生活</view>
-  </view>
-  <view class="page__bd">
-    <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd">今日推荐</view>
-      <view class="weui-panel__bd">
-        <navigator url="../menu/menu" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <view class="placeholder-img">🥩</view>
-          </view>
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">澳洲 M5 和牛牛排</view>
-            <view class="weui-media-box__desc">精选澳洲进口和牛，口感醇厚，鲜嫩多汁。</view>
-          </view>
-        </navigator>
-        <navigator url="../menu/menu" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <view class="placeholder-img">🍝</view>
-          </view>
-          <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">经典博洛尼亚肉酱面</view>
-            <view class="weui-media-box__desc">传统意式配方，长时间慢炖肉酱，搭配精选意面。</view>
-          </view>
-        </navigator>
-      </view>
-      <view class="weui-panel__ft">
-        <navigator url="../menu/menu" class="weui-cell weui-cell_access weui-cell_link">
-          <view class="weui-cell__bd">查看更多菜单</view>
-          <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-        </navigator>
-      </view>
-    </view>
+  <!-- 轮播图 -->
+  <swiper class="banner" indicator-dots="true" autoplay="true" interval="5000" duration="1000" indicator-active-color="#ff4d4f">
+    <swiper-item>
+      <image src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=800" mode="aspectFill" class="banner-image"></image>
+    </swiper-item>
+    <swiper-item>
+      <image src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=800" mode="aspectFill" class="banner-image"></image>
+    </swiper-item>
+  </swiper>
 
-    <view class="weui-footer">
-      <view class="weui-footer__links">
-        <navigator url="" class="weui-footer__link">关于我们</navigator>
+  <!-- 店铺信息 -->
+  <view class="shop-card">
+    <view class="shop-info">
+      <view class="shop-name">SkyWalking 西餐店</view>
+      <view class="shop-status">
+        <text class="status-tag">营业中</text>
+        <text class="shop-distance">距离您 1.2km</text>
       </view>
-      <view class="weui-footer__text">Copyright © 2026 SkyWalking</view>
     </view>
+    <view class="order-actions">
+      <navigator url="../menu/menu" open-type="switchTab" class="action-btn main-btn">
+        <text class="btn-icon">🛵</text>
+        <text>外卖下单</text>
+      </navigator>
+      <navigator url="../menu/menu" open-type="switchTab" class="action-btn sub-btn">
+        <text class="btn-icon">🥡</text>
+        <text>到店自取</text>
+      </navigator>
+    </view>
+  </view>
+
+  <!-- 分类入口 -->
+  <view class="category-grid">
+    <view class="category-item" wx:for="{{categories}}" wx:key="id" bindtap="goToMenu" data-id="{{item.id}}">
+      <view class="category-icon">{{item.icon}}</view>
+      <view class="category-name">{{item.name}}</view>
+    </view>
+  </view>
+
+  <!-- 优惠活动 -->
+  <view class="section-title">限时优惠</view>
+  <view class="promo-list">
+    <view class="promo-item" wx:for="{{promoFoods}}" wx:key="id">
+      <image src="{{item.image}}" mode="aspectFill" class="promo-img"></image>
+      <view class="promo-info">
+        <view class="promo-name">{{item.name}}</view>
+        <view class="promo-price">
+          <text class="now-price">￥{{item.price}}</text>
+          <text class="old-price">￥{{item.originalPrice}}</text>
+        </view>
+      </view>
+      <view class="add-btn" bindtap="addToCart" data-item="{{item}}">+</view>
+    </view>
+  </view>
+
+  <view class="weui-footer">
+    <view class="weui-footer__text">Copyright © 2026 SkyWalking</view>
   </view>
 </view>

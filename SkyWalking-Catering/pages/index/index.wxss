@@ -1,36 +1,190 @@
-.page__hd {
-  padding: 40px;
-  background-color: #1a1a1a;
-  color: #fff;
+.page {
+  padding-bottom: 40px;
 }
 
-.page__title {
-  font-size: 24px;
-  font-weight: 400;
+.banner {
+  height: 400rpx;
+  width: 100%;
 }
 
-.page__desc {
-  margin-top: 5px;
-  color: #888;
-  font-size: 14px;
+.banner-image {
+  width: 100%;
+  height: 100%;
 }
 
-.placeholder-img {
-  width: 60px;
-  height: 60px;
-  background-color: #eee;
+.shop-card {
+  margin: -40rpx 30rpx 30rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 10;
+}
+
+.shop-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.shop-status {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+}
+
+.status-tag {
+  font-size: 20rpx;
+  background: #e6f7ff;
+  color: #1890ff;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+  margin-right: 15rpx;
+}
+
+.shop-distance {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.order-actions {
+  margin-top: 30rpx;
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  flex: 1;
+  height: 80rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  border-radius: 4px;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
 }
 
-.weui-panel {
-  margin-top: 20px;
+.main-btn {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.sub-btn {
+  background: #fff1f0;
+  color: #ff4d4f;
+  border: 1px solid #ffccc7;
+}
+
+.btn-icon {
+  margin-right: 10rpx;
+  font-size: 32rpx;
+}
+
+.category-grid {
+  display: flex;
+  justify-content: space-between;
+  padding: 30rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+}
+
+.category-icon {
+  width: 100rpx;
+  height: 100rpx;
+  background: #f5f5f5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50rpx;
+  margin-bottom: 15rpx;
+}
+
+.category-name {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.section-title {
+  padding: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.promo-list {
+  padding: 0 30rpx;
+}
+
+.promo-item {
+  display: flex;
+  background: #fff;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  align-items: center;
+  position: relative;
+}
+
+.promo-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.promo-info {
+  flex: 1;
+}
+
+.promo-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.promo-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.now-price {
+  font-size: 36rpx;
+  color: #ff4d4f;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+
+.old-price {
+  font-size: 24rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.add-btn {
+  width: 50rpx;
+  height: 50rpx;
+  background: #ff4d4f;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
 }
 
 .weui-footer {
-  margin-top: 40px;
-  padding-bottom: 20px;
+  margin-top: 60rpx;
 }

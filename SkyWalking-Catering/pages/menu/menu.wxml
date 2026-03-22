@@ -1,50 +1,47 @@
-<view class="page">
-  <view class="page__bd">
-    <view class="weui-cells__title">精选主菜</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__hd">
-          <view class="food-icon">🥩</view>
-        </view>
-        <view class="weui-cell__bd">澳洲 M5 和牛牛排</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">￥298</view>
-      </view>
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__hd">
-          <view class="food-icon">🍝</view>
-        </view>
-        <view class="weui-cell__bd">博洛尼亚肉酱面</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">￥88</view>
-      </view>
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__hd">
-          <view class="food-icon">🍕</view>
-        </view>
-        <view class="weui-cell__bd">松露蘑菇比萨</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">￥128</view>
-      </view>
+<view class="menu-container">
+  <!-- 左侧分类栏 -->
+  <scroll-view class="category-sidebar" scroll-y="true">
+    <view 
+      wx:for="{{categories}}" 
+      wx:key="id" 
+      class="category-item {{activeCategoryId === item.id ? 'active' : ''}}" 
+      bindtap="selectCategory" 
+      data-id="{{item.id}}"
+    >
+      <text>{{item.name}}</text>
     </view>
+  </scroll-view>
 
-    <view class="weui-cells__title">特色甜点</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__hd">
-          <view class="food-icon">🍰</view>
+  <!-- 右侧商品列表 -->
+  <scroll-view class="food-list" scroll-y="true" scroll-with-animation="true">
+    <view class="category-title">{{activeCategoryName}}</view>
+    <view class="food-item" wx:for="{{currentFoods}}" wx:key="id">
+      <image src="{{item.image}}" mode="aspectFill" class="food-img"></image>
+      <view class="food-info">
+        <view class="food-name">{{item.name}}</view>
+        <view class="food-desc">{{item.desc}}</view>
+        <view class="food-bottom">
+          <view class="food-price">￥{{item.price}}</view>
+          <view class="count-actions">
+            <view class="minus-btn" wx:if="{{item.count > 0}}" bindtap="changeCount" data-id="{{item.id}}" data-delta="-1">-</view>
+            <view class="count-num" wx:if="{{item.count > 0}}">{{item.count}}</view>
+            <view class="plus-btn" bindtap="changeCount" data-id="{{item.id}}" data-delta="1">+</view>
+          </view>
         </view>
-        <view class="weui-cell__bd">提拉米苏</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">￥58</view>
-      </view>
-      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__hd">
-          <view class="food-icon">🍮</view>
-        </view>
-        <view class="weui-cell__bd">焦糖布丁</view>
-        <view class="weui-cell__ft weui-cell__ft_in-access">￥48</view>
       </view>
     </view>
+  </scroll-view>
 
-    <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" style="background-color: #1a1a1a;">去结算</button>
+  <!-- 底部购物车栏 -->
+  <view class="cart-bar" wx:if="{{totalCount > 0}}">
+    <view class="cart-icon-wrapper" bindtap="toggleCart">
+      <view class="cart-icon">🛒</view>
+      <view class="cart-badge">{{totalCount}}</view>
     </view>
+    <view class="cart-total">
+      <view class="total-price">￥{{totalPrice}}</view>
+      <view class="delivery-tip">另需配送费￥5</view>
+    </view>
+    <view class="settle-btn" bindtap="goToSettle">去结算</view>
   </view>
 </view>
