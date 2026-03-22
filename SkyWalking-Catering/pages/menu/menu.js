@@ -57,7 +57,9 @@ Page({
 
     const currentFoods = filteredFoods.map(f => {
       const cartItem = cart.find(ci => ci.id === f.id);
-      return { ...f, count: cartItem ? cartItem.count : 0 };
+      const foodItem = Object.assign({}, f);
+      foodItem.count = cartItem ? cartItem.count : 0;
+      return foodItem;
     });
 
     this.setData({ currentFoods });
@@ -76,7 +78,9 @@ Page({
         cart[cartIndex].count++;
       } else {
         const food = allFoods.find(f => f.id === id);
-        cart.push({ ...food, count: 1 });
+        const cartItem = Object.assign({}, food);
+        cartItem.count = 1;
+        cart.push(cartItem);
       }
     } else {
       if (cartIndex > -1) {
@@ -187,7 +191,7 @@ Page({
               const orderNo = 'SW' + Math.random().toString().slice(2, 10);
               app.globalData.lastOrder = {
                 orderNo: orderNo,
-                items: [...app.globalData.cart],
+                items: JSON.parse(JSON.stringify(app.globalData.cart)),
                 totalPrice: this.data.totalPrice,
                 status: '制作中'
               };

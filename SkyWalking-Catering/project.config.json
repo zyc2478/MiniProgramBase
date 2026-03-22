@@ -18,7 +18,7 @@
     "minified": true,
     "autoAudits": false,
     "newFeature": false,
-    "enhance": true,
+    "enhance": false,
     "showShadowRootInWxmlPanel": true,
     "layerOptimization": true,
     "checkInvalidKey": true,
