@@ -25,7 +25,7 @@ Page({
         selected: 1
       })
     }
-    // 默认选择第一个分类
+    // 默认选择第一个分类 (人气热销)
     if (!this.data.activeCategoryId) {
       this.selectCategory({ currentTarget: { dataset: { id: this.data.categories[0].id } } });
     }
@@ -45,12 +45,20 @@ Page({
   refreshCurrentFoods() {
     const allFoods = app.globalData.foods;
     const cart = app.globalData.cart;
-    const currentFoods = allFoods
-      .filter(f => f.categoryId === this.data.activeCategoryId)
-      .map(f => {
-        const cartItem = cart.find(ci => ci.id === f.id);
-        return { ...f, count: cartItem ? cartItem.count : 0 };
-      });
+    
+    let filteredFoods = [];
+    if (this.data.activeCategoryId === 'cat1') {
+      // 人气热销：筛选标记为 popular 的商品
+      filteredFoods = allFoods.filter(f => f.isPopular);
+    } else {
+      // 其他分类：按 categoryId 筛选
+      filteredFoods = allFoods.filter(f => f.categoryId === this.data.activeCategoryId);
+    }
+
+    const currentFoods = filteredFoods.map(f => {
+      const cartItem = cart.find(ci => ci.id === f.id);
+      return { ...f, count: cartItem ? cartItem.count : 0 };
+    });
 
     this.setData({ currentFoods });
   },
@@ -92,9 +100,12 @@ Page({
 
     cart.forEach(item => {
       totalCount += item.count;
-      totalPrice += item.count * item.price;
+      // 模拟会员逻辑：如果商品有会员价，则按会员价计算
+      const actualPrice = item.memberPrice || item.price;
+      totalPrice += item.count * actualPrice;
+      
       if (item.originalPrice) {
-        totalDiscount += item.count * (item.originalPrice - item.price);
+        totalDiscount += item.count * (item.originalPrice - actualPrice);
       }
     });
 
@@ -105,7 +116,6 @@ Page({
       cartItems: cart
     });
 
-    // 如果购物车空了，关闭详情弹窗
     if (totalCount === 0) {
       this.setData({ showCartDetail: false });
     }
@@ -138,11 +148,11 @@ Page({
     setTimeout(() => {
       wx.hideLoading();
       wx.showModal({
-        title: '支付确认',
-        content: `总计：￥${this.data.totalPrice}\n请确认下单？`,
+        title: '天行会员结算',
+        content: `您已享受会员优惠！\n实付金额：￥${this.data.totalPrice}\n请确认支付？`,
         success: (res) => {
           if (res.confirm) {
-            wx.showToast({ title: '下单成功！', icon: 'success' });
+            wx.showToast({ title: '支付成功！', icon: 'success' });
             app.globalData.cart = [];
             this.refreshCurrentFoods();
             this.updateCartStatus();

@@ -13,7 +13,7 @@ Component({
       text: "点餐"
     }, {
       pagePath: "/pages/me/me", // Placeholder for VIP, will handle special click
-      text: "会员卡"
+      text: "天行卡"
     }, {
       pagePath: "/pages/order/order",
       iconPath: "📋",

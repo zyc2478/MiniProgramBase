@@ -21,6 +21,13 @@
       <view class="product-info">
         <view class="product-name">{{item.name}}</view>
         <view class="product-desc">{{item.desc}}</view>
+        
+        <!-- 会员特权标签 -->
+        <view class="vip-tag" wx:if="{{item.memberPrice}}">
+          <text class="vip-icon">💎</text>
+          <text>天行卡专享 ￥{{item.memberPrice}}</text>
+        </view>
+
         <view class="product-bottom">
           <view class="product-price">
             <text class="unit">￥</text>
@@ -35,7 +42,6 @@
         </view>
       </view>
     </view>
-    <!-- 底部撑开，防止被购物车挡住 -->
     <view class="shelf-spacer"></view>
   </scroll-view>
 
@@ -47,27 +53,27 @@
     </view>
     <view class="cart-info" wx:if="{{totalCount > 0}}">
       <view class="total-price">￥{{totalPrice}}</view>
-      <view class="discount-tip">已优惠 ￥{{totalDiscount}}</view>
+      <view class="discount-tip">已通过天行卡优惠 ￥{{totalDiscount}}</view>
     </view>
     <view class="cart-info" wx:else>
-      <text class="empty-tip">未选择商品</text>
+      <text class="empty-tip">天行会员享特价，请点餐</text>
     </view>
     <view class="checkout-btn {{totalCount > 0 ? 'enabled' : ''}}" bindtap="onCheckout">
       {{totalCount > 0 ? '去结算' : '￥20起送'}}
     </view>
   </view>
 
-  <!-- 购物车详情弹窗 (简易版) -->
+  <!-- 购物车详情弹窗 -->
   <view class="cart-detail-mask" wx:if="{{showCartDetail}}" bindtap="toggleCartDetail"></view>
   <view class="cart-detail-popup" wx:if="{{showCartDetail}}">
     <view class="popup-header">
-      <text>已选商品</text>
-      <text class="clear-cart" bindtap="clearCart">清空购物车</text>
+      <text>已选美味 (天行会员价已生效)</text>
+      <text class="clear-cart" bindtap="clearCart">清空</text>
     </view>
     <scroll-view class="popup-list" scroll-y>
       <view class="popup-item" wx:for="{{cartItems}}" wx:key="id">
         <view class="item-name">{{item.name}}</view>
-        <view class="item-price">￥{{item.price * item.count}}</view>
+        <view class="item-price">￥{{(item.memberPrice || item.price) * item.count}}</view>
         <view class="counter">
           <view class="btn minus" bindtap="changeCount" data-id="{{item.id}}" data-delta="-1">-</view>
           <text class="num">{{item.count}}</text>

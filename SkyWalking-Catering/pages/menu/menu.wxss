@@ -86,6 +86,28 @@ page {
   color: #333;
 }
 
+.vip-tag {
+  display: flex;
+  align-items: center;
+  background-color: #fff7e6;
+  border: 1rpx solid #ffd591;
+  border-radius: 4rpx;
+  padding: 4rpx 12rpx;
+  margin: 8rpx 0;
+  width: fit-content;
+}
+
+.vip-icon {
+  font-size: 20rpx;
+  margin-right: 6rpx;
+}
+
+.vip-tag text {
+  font-size: 20rpx;
+  color: #fa8c16;
+  font-weight: 500;
+}
+
 .product-desc {
   font-size: 22rpx;
   color: #999;
