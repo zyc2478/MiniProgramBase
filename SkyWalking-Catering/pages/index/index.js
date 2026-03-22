@@ -5,6 +5,14 @@ Page({
     featuredFoods: []
   },
 
+  onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 0
+      })
+    }
+  },
+
   onLoad() {
     const allFoods = app.globalData.foods;
     // 随机选4个作为精选

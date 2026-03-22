@@ -4,7 +4,7 @@ WeChat Mini Program base projects.
 
 ## Projects
 
-### 1. SkyWalking-Catering (SkyWalking 西餐店)
+### 1. SkyWalker-Catering (SkyWalker 西餐连锁)
 A professional catering mini program designed for high-end restaurants.
 - **Features**: Menu browsing, Online ordering, Membership center.
 - **Tech**: WeChat Mini Program, WeUI.

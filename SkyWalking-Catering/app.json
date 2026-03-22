@@ -8,10 +8,11 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ff4d4f",
-    "navigationBarTitleText": "SkyWalking 西餐店",
+    "navigationBarTitleText": "SkyWalker 西餐连锁",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
+    "custom": true,
     "color": "#7A7E83",
     "selectedColor": "#ff4d4f",
     "borderStyle": "black",
@@ -23,7 +24,7 @@
       },
       {
         "pagePath": "pages/menu/menu",
-        "text": "菜单"
+        "text": "点餐"
       },
       {
         "pagePath": "pages/order/order",

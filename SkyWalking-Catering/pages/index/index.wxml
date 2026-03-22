@@ -1,6 +1,7 @@
 <view class="container">
   <!-- 顶部搜索栏 -->
   <view class="header-search">
+    <view class="shop-name">SkyWalker 西餐连锁</view>
     <view class="search-bar">
       <icon type="search" size="14"></icon>
       <text class="search-placeholder">搜索美味餐食...</text>
@@ -39,6 +40,25 @@
         <view class="member-points">积分：1250 | 优惠券：3张</view>
       </view>
       <view class="member-btn">去领券</view>
+    </view>
+
+    <!-- 优惠活动广告位 (Promotion Banners) -->
+    <view class="promo-banner" bindtap="goToMenu">
+      <view class="promo-content">
+        <view class="promo-tag">限时特价</view>
+        <view class="promo-title">周一享特价</view>
+        <view class="promo-subtitle">￥1 元抢爆款鸡米花</view>
+      </view>
+      <view class="promo-btn">点击领取</view>
+    </view>
+
+    <!-- 充值活动广告位 -->
+    <view class="recharge-banner" bindtap="goToMenu">
+      <image src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" mode="aspectFill" class="recharge-bg"></image>
+      <view class="recharge-overlay">
+        <view class="recharge-title">越充越划算</view>
+        <view class="recharge-desc">超值推荐 | 充200送50</view>
+      </view>
     </view>
 
     <!-- 精选货架 (Featured Items) -->

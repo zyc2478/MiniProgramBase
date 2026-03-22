@@ -20,6 +20,11 @@ Page({
   },
 
   onShow() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+      })
+    }
     // 默认选择第一个分类
     if (!this.data.activeCategoryId) {
       this.selectCategory({ currentTarget: { dataset: { id: this.data.categories[0].id } } });
