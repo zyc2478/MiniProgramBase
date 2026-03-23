@@ -187,8 +187,8 @@ Page({
                 duration: 1500
               });
 
-              // 生成一个模拟订单号
-              const orderNo = 'SW' + Math.random().toString().slice(2, 10);
+              // 生成一个模拟订单号（4位数字）
+              const orderNo = Math.floor(1000 + Math.random() * 9000).toString();
               app.globalData.lastOrder = {
                 orderNo: orderNo,
                 items: JSON.parse(JSON.stringify(app.globalData.cart)),
